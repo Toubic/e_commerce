@@ -19,7 +19,7 @@ const Product = ({ product }) => {
                     </Typography>
                 </div>
                 <Typography variant="body2" color="textSecondary">
-                    {product.description}
+                    {product.description.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "")}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
