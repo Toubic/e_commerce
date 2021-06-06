@@ -4,7 +4,6 @@ import { Container, Typography, Button, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
 const Cart = ({ cart }) => {
-    const isEmpty = cart.line_items.length <= 0;
     const classes = useStyles();
 
     const EmptyCart = () => (
@@ -30,11 +29,14 @@ const Cart = ({ cart }) => {
         </>
     );
 
+    if(!cart.line_items)
+              return "Loading ...";
+
     return (
         <Container>
             <div className={classes.toolbar} />
             <Typography className={classes.title} variant="h3" >Your shopping cart</Typography>
-            { isEmpty ? <EmptyCart /> : <FilledCart />}
+            { !cart.line_items.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )
 }
