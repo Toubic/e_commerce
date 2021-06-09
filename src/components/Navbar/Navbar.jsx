@@ -1,13 +1,16 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
 import { ShoppingCart, Shoppingcart } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import logo from '../../assets/TwiCommerce.png'
 import useStyles from './styles'
 
 const Navbar = ({ totalItemsInCart }) => {
     const classes = useStyles();
+    const location = useLocation();
+
+    
 
     return (
         <>
@@ -18,13 +21,14 @@ const Navbar = ({ totalItemsInCart }) => {
                         E-commerce
                     </Typography>
                     <div className={classes.grow} />
+                    { location.pathname == '/' && (
                     <div className={classes.button}>
                         <IconButton component={Link} to="/cart" aria-label="Show cart item" color="inherit">
                             <Badge badgeContent={totalItemsInCart} color="secondary">
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>
-                    </div>
+                    </div>)}
                 </Toolbar>
             </AppBar>
         </>
