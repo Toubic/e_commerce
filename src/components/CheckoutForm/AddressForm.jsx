@@ -15,10 +15,13 @@ const AddressForm = ({ checkoutToken }) => {
     const [shippingOption, setShippingOption] = useState('');
     const methods = useForm();
 
+    const countries = Object.entries(shippingCountries).map(([countryCode, countryName]) => ({ id: countryCode, label: countryName }));
+
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
 
         setShippingCountries(countries);
+        setShippingCountry(Object.keys(countries)[0])
     }
 
     useEffect(() => {
@@ -37,12 +40,17 @@ const AddressForm = ({ checkoutToken }) => {
                         <FormInput required name="email" label="Email" />
                         <FormInput required name="city" label="City" />
                         <FormInput required name="postalCode" label="Postal code" />
-                        {/* <Grid item xs={12} sm={6}>
+                       <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping country</InputLabel>
-                            <Select value={} fullWidth onChange={}>
-                                <MenuItem value={} key={}>Select me</MenuItem>
+                            <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
+                                {countries.map((country) => (
+                                    <MenuItem value={country.id} key={country.id}>
+                                        {country.label}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </Grid>
+                         {/* 
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping subdivision/InputLabel>
                             <Select value={} fullWidth onChange={}>
