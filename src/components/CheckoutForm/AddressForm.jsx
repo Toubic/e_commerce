@@ -6,7 +6,7 @@ import { commerce } from '../../lib/commerce';
 import FormInput from './FormInput';
 import { Link } from 'react-router-dom';
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken, next }) => {
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
     const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -58,7 +58,7 @@ const AddressForm = ({ checkoutToken }) => {
         <>
             <Typography variant="h6" gutterBottom>Shipping address</Typography>
             <FormProvider {... methods}>
-                <form onSubmit=''>
+                <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, setShippingOption }))}>
                     <Grid container spacing={3}>
                         <FormInput required name="firstName" label="First name" />
                         <FormInput required name="lastName" label="Last name" />
