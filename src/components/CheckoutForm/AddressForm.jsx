@@ -7,12 +7,20 @@ import FormInput from './FormInput';
 import { Link } from 'react-router-dom';
 
 const AddressForm = ({ checkoutToken, next }) => {
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [address1, setAddress1] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [postalCode, setPostalCode] = useState('');
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
     const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
     const [shippingSubdivision, setShippingSubdivision] = useState('');
     const [shippingOptions, setShippingOptions] = useState([]);
     const [shippingOption, setShippingOption] = useState('');
+  
     const methods = useForm();
 
     const countries = Object.entries(shippingCountries).map(([countryCode, countryName]) => ({ id: countryCode, label: countryName }));
@@ -58,14 +66,14 @@ const AddressForm = ({ checkoutToken, next }) => {
         <>
             <Typography variant="h6" gutterBottom>Shipping address</Typography>
             <FormProvider {... methods}>
-                <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, setShippingOption }))}>
+                <form onSubmit={methods.handleSubmit((data) => next({ firstName, lastName, address1, email, city, postalCode, shippingCountry, shippingSubdivision, shippingOption }))}>
                     <Grid container spacing={3}>
-                        <FormInput required name="firstName" label="First name" />
-                        <FormInput required name="lastName" label="Last name" />
-                        <FormInput required name="address1" label="Address" />
-                        <FormInput required name="email" label="Email" />
-                        <FormInput required name="city" label="City" />
-                        <FormInput required name="postalCode" label="Postal code" />
+                        <FormInput value={firstName} required name="firstName" label="First name" onChange={(e) => setFirstName(e.target.value)}/>
+                        <FormInput value={lastName} required name="lastName" label="Last name" onChange={(e) => setLastName(e.target.value)}/>
+                        <FormInput value={address1} required name="address1" label="Address" onChange={(e) => setAddress1(e.target.value)}/>
+                        <FormInput value={email} required name="email" label="Email" onChange={(e) => setEmail(e.target.value)}/>
+                        <FormInput value={city} required name="city" label="City" onChange={(e) => setCity(e.target.value)}/>
+                        <FormInput value={postalCode} required name="postalCode" label="Postal code" onChange={(e) => setPostalCode(e.target.value)}/>
                        <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
