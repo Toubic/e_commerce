@@ -17,7 +17,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
-    color: 'yellow'
+    color: 'gold',
+    fontFamily: 'comic sans',
   },
   image: {
     marginRight: '10px',
