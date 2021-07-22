@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
     color: 'gold',
-    fontFamily: 'comic sans',
+    fontFamily: 'Tourney',
   },
   image: {
     marginRight: '10px',
