@@ -9,7 +9,7 @@ const Cart = ({ cart, handleUpdateCartQuantity, handleRemoveFromCart, handleEmpt
     const classes = useStyles();
 
     const EmptyCart = () => (
-        <Typography variant="subtitle1">You have no items in your shopping cart, start adding some </Typography>
+        <Typography variant="subtitle1" className={classes.typography}>You have no items in your shopping cart, start adding some </Typography>
     );
 
     const FilledCart = () => (
@@ -22,7 +22,7 @@ const Cart = ({ cart, handleUpdateCartQuantity, handleRemoveFromCart, handleEmpt
             ))}
           </Grid>
           <div className={classes.cardDetails}>
-            <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_code}</Typography>
+            <Typography variant="h4" className={classes.typography}>Subtotal: {cart.subtotal.formatted_with_code}</Typography>
             <div>
               <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyTheCart}>Empty cart</Button>
               <Button component={Link} to="/checkout" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
@@ -37,7 +37,7 @@ const Cart = ({ cart, handleUpdateCartQuantity, handleRemoveFromCart, handleEmpt
     return (
         <Container>
             <div className={classes.toolbar} />
-            <Typography className={classes.title} variant="h3" gutterBottom>Your shopping cart</Typography>
+            <Typography className={classes.title,classes.typography} variant="h3" gutterBottom>Your shopping cart</Typography>
             { !cart.line_items.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )
