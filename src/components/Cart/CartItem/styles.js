@@ -18,4 +18,7 @@ export default makeStyles(() => ({
   typography: {
     fontFamily: 'Arvo',
   },
+  removeButton: {
+    backgroundColor: 'black',
+  },
 }));

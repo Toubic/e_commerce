@@ -13,9 +13,11 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('xs')]: {
       marginRight: '20px',
     },
+    backgroundColor: 'black',
   },
   checkoutButton: {
     minWidth: '150px',
+    backgroundColor: 'purple',
   },
   link: {
     textDecoration: 'none',

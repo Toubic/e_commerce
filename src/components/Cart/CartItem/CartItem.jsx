@@ -19,7 +19,7 @@ const CartItem = ({ item, onUpdateCartQuantity, onRemoveFromCart }) => {
                     <Typography className={classes.typography}>{item.quantity}</Typography>
                     <Button type="button" size="small" onClick={() => onUpdateCartQuantity(item.id, item.quantity + 1)}>+</Button>
                 </div>
-                <Button variant="contained" type="button" color="secondary" onClick={() => onRemoveFromCart(item.id)}>Remove</Button>
+                <Button variant="contained" type="button" color="secondary" className={classes.removeButton} onClick={() => onRemoveFromCart(item.id)}>Remove</Button>
             </CardActions>
         </Card>
     )
