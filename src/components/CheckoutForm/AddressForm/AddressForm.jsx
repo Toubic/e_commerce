@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
-import { commerce } from '../../lib/commerce';
+import { commerce } from '../../../lib/commerce';
 
-import FormInput from './FormInput';
+import FormInput from '../FormInput';
 import { Link } from 'react-router-dom';
+import useStyles from './styles';
 
 const AddressForm = ({ checkoutToken, next }) => {
 
@@ -20,6 +21,7 @@ const AddressForm = ({ checkoutToken, next }) => {
     const [shippingSubdivision, setShippingSubdivision] = useState('');
     const [shippingOptions, setShippingOptions] = useState([]);
     const [shippingOption, setShippingOption] = useState('');
+    const classes = useStyles();
   
     const methods = useForm();
 
@@ -30,22 +32,30 @@ const AddressForm = ({ checkoutToken, next }) => {
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
 
-        setShippingCountries(countries);
-        setShippingCountry(Object.keys(countries)[0])
+        if(countries){
+            setShippingCountries(countries);
+            setShippingCountry(Object.keys(countries)[0]);
+        }
     }
 
     const fetchSubdivisions = async(countryCode) => {
         const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
 
-        setShippingSubdivisions(subdivisions);
-        setShippingSubdivision(Object.keys(subdivisions)[0]);
+        if(subdivisions){
+            setShippingSubdivisions(subdivisions);
+            setShippingSubdivision(Object.keys(subdivisions)[0]);
+        }
     }
 
     const fetchShippingOptions = async(checkoutTokenId, country, region = null) => {
         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region })
 
-        setShippingOptions(options);
-        setShippingOption(options[0].id);
+        if(options){
+            setShippingOptions(options);
+            if(options[0]){
+                setShippingOption(options[0].id);
+            }
+        }
     }
 
     useEffect(() => {
@@ -106,8 +116,8 @@ const AddressForm = ({ checkoutToken, next }) => {
                         </Grid>
                     </Grid>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                        <Button component={Link} variant="outlined" to="/cart">Back to Cart</Button>
-                        <Button type="submit" variant="contained" color="primary">Next</Button>
+                        <Button component={Link} variant="contained" to="/cart" color="secondary" className={classes.backButton}>Back to Cart</Button>
+                        <Button type="submit" variant="contained" color="primary" className={classes.nextButton}>Next</Button>
                     </div>
                 </form>
             </FormProvider>
