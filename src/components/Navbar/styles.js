@@ -68,4 +68,14 @@ export default makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  badge: {
+    color: 'gold',
+  },
+  iconButton: {
+    backgroundColor: 'black',
+    borderRadius: '5px',
+    "&:hover": {
+      padding: '2px',
+    },
+  },
 }));
