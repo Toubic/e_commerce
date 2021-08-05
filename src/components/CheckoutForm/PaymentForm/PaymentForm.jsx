@@ -3,11 +3,13 @@ import { Typography, Button, Divider } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-import Review from  './Review/Review';
+import Review from  '../Review/Review';
+import useStyles from './styles';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
 const PaymentForm = ({ shippingData, checkoutToken, nextStep, backStep, onCaptureCheckout }) => {
+    const classes = useStyles();
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
 
@@ -55,15 +57,15 @@ const PaymentForm = ({ shippingData, checkoutToken, nextStep, backStep, onCaptur
         <>
             <Review checkoutToken={checkoutToken} />
             <Divider />
-            <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Payment method</Typography>
+            <Typography variant="h6" gutterBottom className={classes.typography}>Payment method</Typography>
             <Elements stripe={stripePromise}>
                 <ElementsConsumer>
                     {({ elements, stripe }) => (
                         <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
                             <CardElement />
-                            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
-                                <Button variant="outlined" onClick={backStep}>Back</Button>
-                                <Button type="submit" variant="contained" disabled={!stripe} color="primary">
+                            <div className={classes.paymentFormDiv}>
+                                <Button variant="contained" color="secondary" className={classes.backButton} onClick={backStep}>Back</Button>
+                                <Button type="submit" variant="contained" disabled={!stripe} color="primary" className={classes.payButton}>
                                     Pay {checkoutToken.live.subtotal.formatted_with_symbol}
                                 </Button>
                             </div>

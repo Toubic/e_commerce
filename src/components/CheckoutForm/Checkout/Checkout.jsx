@@ -4,7 +4,7 @@ import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider,
 import { commerce } from '../../../lib/commerce';
 import useStyles from './styles';
 import AddressForm from '../AddressForm/AddressForm';
-import PaymentForm from '../PaymentForm';
+import PaymentForm from '../PaymentForm/PaymentForm';
 import { Link, useHistory } from 'react-router-dom';
 
 const steps = ['Shipping address', 'Payment details'];
