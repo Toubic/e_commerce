@@ -99,7 +99,7 @@ const AddressForm = ({ checkoutToken, next }) => {
                             <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
                                 {subdivisions.map((subdivision) => (
                                     <MenuItem value={subdivision.id} key={subdivision.id}>
-                                        {subdivision.label}
+                                        {subdivision.label.split("[").shift()}
                                     </MenuItem>
                                 ))}
                             </Select>
