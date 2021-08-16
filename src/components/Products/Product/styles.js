@@ -8,6 +8,11 @@ export default makeStyles(() => ({
     media: {
       height: 0,
       paddingTop: '56.25%', // 16:9
+      "&:hover": {
+        cursor: 'zoom-in',
+        transform: 'scale(1.2)',
+        marginBottom: '20px',
+      },
     },
     cardActions: {
       display: 'flex',
