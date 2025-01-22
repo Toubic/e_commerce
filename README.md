@@ -1,7 +1,5 @@
 # Project deployed on Netlify
 
-[Deployed E-commerce project](https://toubic-e-commerce.netlify.app/)
-
 Testing with Visa Checkout
 
 To test your integration against Visa Checkout’s sandbox, create a new Visa Checkout user account during the checkout process on your website. Configure the account to use the test card number 4242 4242 4242 4242, a random three-digit CVC number, and any expiration date in the future. Complete the checkout process as normal. If everything worked correctly, Visa Checkout will redirect you back to your application, which should create the charge as expected. (https://stripe.com/docs/visa-checkout)
