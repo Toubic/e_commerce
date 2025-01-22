@@ -1,4 +1,4 @@
-# Project deployed on Netlify
+# Project
 
 Testing with Visa Checkout
 
